@@ -1,0 +1,23 @@
+
+<a routerLink="/login">login page</a>
+<a routerLink="/about">about page</a>
+<a routerLink="/home">home page</a>
+
+
+<form class="generic-form" *ngIf="forms && forms.length" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <div *ngFor="let item of forms">
+    <label for="{{item.name}}">{{item.placeholder}}</label>
+    <input *ngIf="item.type === 'text' || item.type === 'email'" 
+           type="{{item.type}}" 
+           id="{{item.name}}" 
+           placeholder="{{item.placeholder}}" 
+           [(ngModel)]="formValues[item.name]"
+           name="{{item.name}}"
+          >
+
+    <span class="error-message" *ngIf="item.error  ">
+      {{item.error}}
+    </span>
+  </div>
+  <button type="submit">Submit</button>
+</form>
